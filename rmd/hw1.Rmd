@@ -1,0 +1,193 @@
+---
+title: "Using R Markdown Files"
+author: "Michael Gavin"
+date: "January 19"
+output:
+  html_notebook: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+For our work in R, I'll communicate with you using R Markdown files. These will be kind of weird to work with at first, but, trust me, they make everything a lot easier. The nice thing about Markdown files is that you can embed code right into them. Which means I can give you examples, and you can just click on little green arrow to run the code. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+print("Question = 2B | !2B")
+```
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+Throughout the semester, we'll be using a number of R packages, which come with built-in functions. Install and load them.
+```{r}
+install.packages("Matrix")
+install.packages("igraph")
+install.packages("xml2")
+install.packages("devtools")
+```
+
+Of these, for today we'll be using `devtools` and `Matrix`. This command activates their libraries of functions.
+```{r}
+library(Matrix)
+library(devtools)
+```
+
+All data for this course is contained in a package called `math4shakespeare`, but it's a little different from the others, because it's not an official R package. It's just stored on Github. You need to use `devtools`, which has a special function called `install_github()` to install it.
+```{r}
+install_github("michaelgavin/math4shakespeare")
+```
+
+Now we can look at the datasets we'll be using throughout the semester. **P** is a words x plays matrix. You can get its dimensions like this:
+```{r}
+library(math4shakespeare)
+data("P")
+dim(P)
+```
+
+The `dim()` function tells you how many rows and columns are in the matrix. The matrix **P** has 26,952 rows (for each unique word form) and 37 columns (for each play).
+
+To calculate the total frequencies for each word, take the sum of each row:
+```{r}
+totals = rowSums(P)
+```
+
+Now look at the top ten words
+```{r}
+sort(totals, decreasing = T)[1:10]
+```
+
+S is a words x speeches matrix.
+```{r}
+data("S")
+dim(S)
+```
+
+You'll notice it's much bigger because it has a lot more columns (one for every speech given by every character in every play), but it has the same number of rows.
+```{r}
+totals = rowSums(S)
+```
+
+Now check this out:
+```{r}
+sort(totals, decreasing = T)[1:10]
+```
+
+The values should be exactly the same. Why? Because it's all the same data, organized into different columns. **P** just has the totals for each play. **S** has each speech. And **C** has the word counts by character.
+
+
+```{r}
+data("C")
+dim(C)
+```
+
+There are 1448 characters across the 37 plays, plus an extra column for undefined speeches. (That happens rarely when several characters are shouting simultaneously, and the editors did not assign a speaker to the speech.)
+
+Now check this out:
+```{r}
+sum(P)
+sum(S)
+sum(C)
+```
+
+If the data is correct, these totals should all match exactly -- again, because it's the same textual data, just divided differently.
+
+Above, we used `rowSums()` to get the total frequency for each word. Now let's get the total for each character to see who talks the most.
+```{r}
+totals = colSums(C)
+sort(totals, decreasing = T)[1:5]
+```
+
+This makes sense. The history plays are really long, and some have sequels. So Henry V and Falstraff are both in two plays. 
+
+Also, Richard III and Hamlet talk a lot.
+
+### Analyzing word counts
+
+Check your data, first by creating a variable x
+```{r}
+x = S["death",]
+```
+
+Then see how many x's are > 0.
+```{r}
+length(x[x>0])
+```
+
+If the answer is 716, you're doing well. What that means is that there are 716 speeches in all of Shakespeare's plays that use the word "death" at least once.
+
+Notice that the total frequency is higher:
+```{r}
+sum(x)
+```
+
+**Comprehension check:** Why is `length(x[x>0])` less than `sum(x)`?
+
+If you can't answer that question, stop and re-read the above and think about what these two functions are counting.
+
+You can look at the play metadata
+```{r}
+data("play_metadata")
+View(play_metadata)
+```
+
+If you play around with the `View()` function, you'll see that you can sort by different columns. For small data, it's really useful. But don't try to `View()` a large dataset with thousands of columns. You'll crash RStudio.
+
+And you can select from the data, too. (This will be important later.)
+```{r}
+View(play_metadata[play_metadata$GENRE == "HISTORY",])
+```
+
+To get the number of words spoken in history plays, use the metadata to create an index (which I'm in the habit of calling `hits`) that subsets from **P** as a whole.
+```{r}
+hits = which(play_metadata$GENRE == "HISTORY")
+ids = play_metadata$ID[hits]
+totals = rowSums(P[,ids])
+totals["death"]
+```
+
+Of the 837 times Shakespeare used the word "death," 344 were in history plays.
+
+**Comprehension check:** What is `ids` in the above code? What does `P[,ids]` refer to?
+
+### Working with character metadata
+
+You can look at the metadata for each character:
+```{r}
+data("character_metadata")
+View(character_metadata)
+```
+
+To get the list of male characters, create an index, just like above. (In my code, any time I do a search, I just save the results of that search in a variable that I call `hits`. I don't store the results of the search permanently; I re-write `hits` every time.)
+```{r}
+hits = which(character_metadata$Gender == "M")
+men = character_metadata$Character.ID[hits]
+men[1:5]
+```
+
+So... what percentage of words in Shakespeare are spoken by male characters?
+
+```{r}
+hits = which(colnames(C) %in% men)
+sum(C[,hits]) / sum(C)
+```
+
+This total, 76%, is actually an understatement. You'll see when we dig into the `character_metadata` information that many characters are left without a listed gender. In some cases that's an omission on our part. In others it's because we decided not to gender presumptively male minor figures, like messengers. 
+
+
+
+## YOUR ASSIGNMENT ##
+
+Choose any word (besides "death") in Shakespeare's corpus and report on the Homework Solutions forum six key facts:
+1. What word are you looking at?
+2. How many plays does it appear in?
+3. How many speeches does it appear in?
+4. How many characters say it at least twice?
+5. How many times, total, is it said by female characters?
+6. How many times, total, is it said in the comedies?
+
+Honorable mentions will go to students who find the most interesting words that are used at least once by a female character. 
+
+Super special honorable mentions will go to students who post a request for help with this assignment and/or respond with help.
+
