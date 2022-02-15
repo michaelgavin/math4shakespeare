@@ -2,9 +2,12 @@
 % Please edit documentation in R/correlation.R
 \name{correlation}
 \alias{correlation}
+\alias{most_correlated}
 \title{Computes the correlation between two vectors}
 \usage{
 correlation(x, y)
+
+most_correlated(m, word, num_results = 10)
 }
 \arguments{
 \item{x}{A numeric vector.}
