@@ -3,6 +3,8 @@
 #' Computes the covariance between two vectors.
 #' 
 #' @param x A numeric vector.
+#' 
+#' @param y A numeric vector.
 #'           
 #' 
 #' @section What it does:
@@ -20,7 +22,7 @@
 #' data(P)
 #' a = P["king",]
 #' b = P["queen",]
-#' covariance(a)
+#' covariance(a, b)
 #' @export
 covariance = function(x, y) {
   n = length(x)

@@ -8,6 +8,8 @@ covariance(x, y)
 }
 \arguments{
 \item{x}{A numeric vector.}
+
+\item{y}{A numeric vector.}
 }
 \value{
 A scalar value representing the covariance between
@@ -30,5 +32,5 @@ word-document matrix:
 data(P)
 a = P["king",]
 b = P["queen",]
-covariance(a)
+covariance(a, b)
 }
