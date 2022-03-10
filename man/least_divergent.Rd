@@ -20,5 +20,5 @@ Computes the relative entropy over a matrix
 # For the relative entropy over a word-document matrix:
 data(P)
 a = P["king",]
-least_divergent(P, "king")
+least_divergent(P, a)
 }
