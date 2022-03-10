@@ -29,7 +29,7 @@ correlation = function(x, y) {
   return(results)
 }
 
-#' @rdname correlation
+#' @rdname most_correlated
 most_correlated = function(m, word, num_results = 10) {
   results = apply(m, 1, correlation, m[word,])
   return(sort(results, decreasing = T)[1:num_results])
