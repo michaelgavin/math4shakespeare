@@ -28,8 +28,7 @@ cosine = function(x, y) {
   results = x %*% y / (x %*% x * y %*% y) 
   return(results)
 }
-
-#' @rdname most_similar
+#' @rdname cosine
 most_similar = function(m, word, num_results = 10) {
   results = apply(m, 1, cosine, m[word,])
   return(sort(results, decreasing = T)[1:num_results])

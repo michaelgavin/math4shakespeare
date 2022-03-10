@@ -2,9 +2,12 @@
 % Please edit documentation in R/relative_entropy.R
 \name{relative_entropy}
 \alias{relative_entropy}
+\alias{least_divergent}
 \title{Computes the relative entropy between two vectors}
 \usage{
 relative_entropy(x, y)
+
+least_divergent(m, word, num_results = 10)
 }
 \arguments{
 \item{x}{A numeric vector.}

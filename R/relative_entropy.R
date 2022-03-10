@@ -27,7 +27,7 @@ relative_entropy = function(x, y) {
   return(results)
 }
 
-#' @rdname least_divergent
+#' @rdname relative_entropy
 least_divergent = function(m, word, num_results = 10) {
   results = apply(m, 1, relative_entropy, m[word,])
   return(sort(results[results != 0], decreasing = F)[1:num_results])
