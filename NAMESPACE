@@ -2,7 +2,7 @@
 
 export(avg_mean)
 export(correlation)
-export(cosine)
+export(cosine_similarity)
 export(covariance)
 export(dot_product)
 export(entropy)

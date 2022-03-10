@@ -20,16 +20,11 @@
 #' data(P)
 #' a = P["king",]
 #' b = P["queen",]
-#' cosine(a, b)
+#' cosine_similarity(a, b)
 #' 
 #' most_similar(P, a)
 #' @export
-cosine = function(x, y) {
-  results = x %*% y / (x %*% x * y %*% y) 
+cosine_similarity = function(x, y) {
+  results = x %*% y/(sqrt(x %*% x) * sqrt(y %*% y))
   return(results)
-}
-#' @rdname cosine
-most_similar = function(m, word, num_results = 10) {
-  results = apply(m, 1, cosine, m[word,])
-  return(sort(results, decreasing = T)[1:num_results])
 }

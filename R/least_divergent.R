@@ -13,7 +13,7 @@
 #' # For the relative entropy over a word-document matrix:
 #' data(P)
 #' a = P["king",]
-#' least_divergent(P, "king")
+#' least_divergent(P, a)
 #' @export
 least_divergent = function(m, a, num_results = 10) {
   results = apply(m, 1, relative_entropy, a)

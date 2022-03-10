@@ -15,6 +15,6 @@
 #' most_similar(P, a)
 #' @export
 most_similar = function(m, a, num_results = 10) {
-  results = apply(m, 1, cosine, a)
+  results = apply(m, 1, cosine_similarity, a)
   return(sort(results, decreasing = T)[1:num_results])
 }
