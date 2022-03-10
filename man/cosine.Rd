@@ -7,7 +7,7 @@
 \usage{
 cosine(x, y)
 
-most_similar(m, word, num_results = 10)
+most_similar(m, a, num_results = 10)
 }
 \arguments{
 \item{x}{A numeric vector.}
