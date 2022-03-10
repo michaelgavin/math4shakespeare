@@ -26,7 +26,6 @@ relative_entropy = function(x, y) {
   results = sum(p * log(p / q), na.rm = T)
   return(results)
 }
-
 #' @rdname relative_entropy
 least_divergent = function(m, word, num_results = 10) {
   results = apply(m, 1, relative_entropy, m[word,])
