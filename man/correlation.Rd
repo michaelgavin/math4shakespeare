@@ -24,7 +24,15 @@ Computes the correlation between two vectors.
 \section{What it does}{
 
 
-\deqn{\frac{Cov[X, Y]}{\sqrt Var[X] \times Var[Y]}}
+\Sexpr[results = rd, stage = build]{
+katex::math_to_rd(tex = mathfuncs::correlation())
+}
+
+In R code, the above calculation looks like this:\if{html}{\out{<div class="r">}}\preformatted{correlation = function(x, y) \{
+   results = covariance(x, y) / sqrt(variance(x) * variance(y))
+   return(results)
+\}
+}\if{html}{\out{</div>}}
 }
 
 \examples{

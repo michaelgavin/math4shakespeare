@@ -7,7 +7,9 @@
 #' @param y A numeric vector.
 #' 
 #' @param num_results An integer.
-#'           
+#' 
+#' 
+#'
 #' 
 #' @examples
 #' # For the relative entropy over a word-document matrix:

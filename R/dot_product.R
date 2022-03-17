@@ -13,8 +13,11 @@
 #' is calculated simply by multiply each corresponding element together,
 #' then taking the sum of those elementwise products. 
 #' 
-#' \deqn{a \cdot b = a_1 b_1 + a_2 b_2 + ... + a_n b_n}
 #' 
+#' \Sexpr[results = rd, stage = build]{
+#' katex::math_to_rd(tex = mathfuncs::dot_product())
+#' }
+#'
 #' @return A scalar value representing the dot product between two vectors.
 #' 
 #' @examples

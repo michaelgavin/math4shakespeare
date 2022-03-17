@@ -11,7 +11,16 @@
 #' The covariance is the dot product between the residuals
 #' of two vectors, divided by their length.
 #' 
-#' \deqn{Cov[X] = \frac{\sum(x_i - \bar x)(y_i - \bar y)}{n}}
+#' 
+#' \Sexpr[results = rd, stage = build]{
+#' katex::math_to_rd(tex = mathfuncs::covariance())
+#' }
+#' 
+#' The formula can also be written this way:
+#' 
+#' \Sexpr[results = rd, stage = build]{
+#' katex::math_to_rd(tex = mathfuncs::covariance(output = 2))
+#' }
 #'
 #' @return A scalar value representing the covariance between
 #' two vectors.

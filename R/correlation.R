@@ -9,7 +9,19 @@
 #' @section What it does:
 #' 
 #' 
-#' \deqn{\frac{Cov[X, Y]}{\sqrt Var[X] \times Var[Y]}}
+#' \Sexpr[results = rd, stage = build]{
+#' katex::math_to_rd(tex = mathfuncs::correlation())
+#' }
+#'
+#' In R code, the above calculation looks like this:
+#' 
+#' ```r
+#' correlation = function(x, y) {
+#'    results = covariance(x, y) / sqrt(variance(x) * variance(y))
+#'    return(results)
+#' }
+#' ```
+#'
 #'
 #' @return A scalar value representing the correlation between
 #' two vectors.
