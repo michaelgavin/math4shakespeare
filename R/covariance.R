@@ -15,9 +15,6 @@
 #' 
 #' The formula can also be written this way:
 #' 
-#' \Sexpr[results = rd, stage = build]{
-#' katex::math_to_rd(tex = mathfuncs::covariance(output = 2))
-#' }
 #'
 #' @return A scalar value representing the covariance between
 #' two vectors.
