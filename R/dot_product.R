@@ -14,9 +14,6 @@
 #' then taking the sum of those elementwise products. 
 #' 
 #' 
-#' \Sexpr[results = rd, stage = build]{
-#' katex::math_to_rd(tex = mathfuncs::dot_product())
-#' }
 #'
 #' @return A scalar value representing the dot product between two vectors.
 #' 
