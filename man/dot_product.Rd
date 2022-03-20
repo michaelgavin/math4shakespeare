@@ -17,13 +17,7 @@ A scalar value representing the dot product between two vectors.
 \description{
 Computes the dot product between two vectors.
 }
-\section{What it does}{
 
-The dot product is a mathematical operation that allows you to
-compare two vectors of numbers. The dot product is a mathematical
-operation at the heart of many descriptive statistics. The dot
-is calculated simply by multiply each corresponding element together,
-then taking the sum of those elementwise products.
 
 
 \examples{
