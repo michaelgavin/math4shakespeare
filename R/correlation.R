@@ -8,10 +8,6 @@
 #'
 #' @section What it does:
 #' 
-#' 
-#' \Sexpr[results = rd, stage = build]{
-#' katex::math_to_rd(tex = mathfuncs::correlation())
-#' }
 #'
 #' In R code, the above calculation looks like this:
 #' 
