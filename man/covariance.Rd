@@ -23,16 +23,7 @@ Computes the covariance between two vectors.
 The covariance is the dot product between the residuals
 of two vectors, divided by their length.
 
-\Sexpr[results = rd, stage = build]{
-katex::math_to_rd(tex = mathfuncs::covariance())
-}
 
-The formula can also be written this way:
-
-\Sexpr[results = rd, stage = build]{
-katex::math_to_rd(tex = mathfuncs::covariance(output = 2))
-}
-}
 
 \examples{
 # For the covariance between two terms' distributions in a 
