@@ -18,12 +18,6 @@ two vectors.
 \description{
 Computes the covariance between two vectors.
 }
-\section{What it does}{
-
-The covariance is the dot product between the residuals
-of two vectors, divided by their length.
-
-
 
 \examples{
 # For the covariance between two terms' distributions in a 
